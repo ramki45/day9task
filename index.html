@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function countries(){
+            try{
+                let response = await fetch('https://restcountries.com/v3.1/all');
+                let data = await response.json();
+                let res = data.filter(ele => ele.region === "Asia");
+                console.log(res.map(ele=>ele.name.common));
+                let res1 = data.filter(ele => ele.population<200000);
+                console.log(res1);
+                let res2 = data.map(ele => ele.currencies);
+
+                console.log(res2.filter(ele => ele.symbol));
+
+
+            }
+            catch(err){
+                console.log('error');
+            }
+        }
+        countries();
+    </script>
+</body>
+</html>
